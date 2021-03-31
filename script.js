@@ -95,23 +95,6 @@
 // }
 // console.log(trouble([8, 5, 3,4,6,6] ,7))
 
-
-// function expandedForm(num) {
-//     let str = num.toLocaleString('ru')
-//     let arr = str.split(',')
-//     // if (arr.length === 2) {
-//     //     let num2 = `${arr[0] * 10} + ${arr[1]}`
-//     //     return num2
-//     // } else if (arr.length === 5) {
-//     //     let num5 = `${arr[0] * 10000} + ${arr[2] * 100} + ${arr[4]}`
-//     //     return num5
-//     // }
-//     return arr
-// }
-//
-// console.log(expandedForm(42))
-// console.log(expandedForm(70304))
-
 // function oddOrEven(array) {
 //     let sum = array.reduce((acc,rec) => acc + rec,0)
 //     return sum % 2 === 0 || array.length === 0 ? "even" : "odd"
@@ -160,16 +143,6 @@
 //     return arr.map((el) => el[0].toUpperCase() + el.substring(1)).join('-')
 // }
 // console.log(accum("ZpglnRxqenU"))
-
-// function solution(string) {
-//     let arr = string.split('')
-//     for (let i = 0; i< arr.length; i++) {
-//
-//     }
-// }
-
-// console.log(solution('camelCasing'))
-// console.log(solution('camelCasingTest'))
 
 // var first = [1,2,3];
 // var second = [1,2,3];
@@ -1409,3 +1382,105 @@
 //     return n<1 || text==null ? text : decrypt( [...text].slice(text.length/2).map((v,i) => v+text[i] ).join('').slice(0,text.length), n-1)
 // }
 // console.log(decrypt("hsi  etTi sats!", 1))
+
+
+// function high(x){
+//     let arr = x.split(' ').map(el => el.split(''))
+//     let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+//     let alphabetArr = arr.reduce((acc, rec) => [...acc, rec.reduce((acc,rec) => acc + alphabet.indexOf(rec) + 1,0)],[])
+//     let index = alphabetArr.indexOf(Math.max(...alphabetArr))
+//     return arr[index].join('')
+// }
+// console.log(high('pnvigrmcoexmnxqbdnwxhnxeihvpcix qzfghyefqhrdvvnpefgbcffikyrggtv turljcwjlgwcfgukkgpzetwnbfvuedl ccmxwbydtrhrajiivrdvfgxxjpjtqzk'))  // ccmxwbydtrhrajiivrdvfgxxjpjtqzk
+
+// function high(x){
+//     //transform the input string into array & define a string of alphabetical latin characters
+//     var arr = x.split(' ');
+//     var str = 'abcdefghijklmnopqrstuvwxyz';
+//     //Iterate through the array with input words to find the one with the greatest sum
+//     var newArr = arr.map(function(word){
+//         var sum = 0;
+//         for (var i = 0; i < word.length; i++) {
+//             sum += str.indexOf(word[i]);
+//         }
+//         return sum;
+//     });
+//     //Return the word with the greatest sum
+//     return arr[newArr.indexOf(Math.max(...newArr))];
+// }
+
+// function high(s){
+//     let as = s.split(' ').map(s=>[...s].reduce((a,b)=>a+b.charCodeAt(0)-96,0));
+//     return s.split(' ')[as.indexOf(Math.max(...as))];
+// }
+
+
+// function expandedForm(num) {
+//     let arr = num.toString().split('').reduce((acc, rec,ind, arr) => +rec !== 0 ? [...acc, rec + '0'.repeat(arr.length - ind - 1)] : acc ,[])
+//     return arr.join(' + ')
+// }
+// console.log(expandedForm(170354))
+// var expandedForm = (num) => {
+//     var arr = num.toString().split('').reverse();
+//     var result = [];
+//     for(var i = 0; i < arr.length; i++){
+//         arr[i] == 0 ? result.push() : result.push(arr[i] + ('0'.repeat(i)))
+//     }
+//     return result.reverse().join(' + ')
+// }
+// console.log(expandedForm(170354))
+
+
+// function solution(str){
+//     return str.split('').reduce((acc, rec, ind, arr) => {
+//         if (ind !== Math.floor(arr.length / 2) || arr.length % 2 === 0) {
+//             return [...acc, arr.slice(ind * 2, ind * 2 + 2).join('')]
+//         }
+//         return [...acc, arr[arr.length - 1] + '_']
+//     },[]).filter(el => el)
+// }
+// console.log(solution("abcdefg")) //["ab", "cd", "ef", "g_"]
+
+// function solution(str){
+//     let i = 0;
+//     let result = [];
+//     if (str.length % 2 !== 0) {
+//         str = str + '_';
+//     }
+//     while (i < str.length) {
+//         result = result.concat(str[i] + str[i+1])
+//         i += 2;
+//     }
+//     return result;
+// }
+// console.log(solution("abcd"))
+
+// function inArray(array1,array2){
+//     return array1.filter(el => array2.join(' ').includes(el)).sort()
+// }
+// a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+// a1 = ["xyz", "live", "strong"]
+// console.log(inArray(a1, a2)) //["live", "strong"]
+
+// function inArray(array1,array2){
+//     return array1
+//         .filter(a1 => array2.find(a2 => a2.includes(a1)))
+//         .sort()
+// }
+// a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+// a1 = ["xyz", "live", "strong"]
+// console.log(inArray(a1, a2)) //["live", "strong"]
+
+// function inArray(array1,array2){
+//     return array1
+//         .filter(a1 => array2.some(a2 => a2.includes(a1)))
+//         .sort()
+// }
+
+
+// function sumDigPow(a, b) {
+//     let arr = new Array(b + 1 - a).fill(0).map((_,i) => i + a)
+//     return arr.filter(el => el.toString().split('')
+//         .reduce((acc, rec, ind) => acc + Math.pow(+rec, ind + 1),0) === el)
+// }
+// console.log(sumDigPow(1, 100))
